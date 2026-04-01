@@ -52,7 +52,7 @@ variable "env" {
 
 */
 
-variable "vpc_cidr" {}
+/* variable "vpc_cidr" {}
 variable "public_subnet_cidr" {}
 variable "public_az" {}
 variable "private_subnet_cidr" {}
@@ -65,3 +65,4 @@ variable "ingress_ssh" {}
 variable "ami" {}
 variable "instance_type" {}
 variable "key_name" {}
+ */
