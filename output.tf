@@ -1,4 +1,4 @@
-output "vpc_id" {
+/* output "vpc_id" {
     value = aws_vpc.my_vpc.id 
 }
 
@@ -18,3 +18,4 @@ output "private_instance_ip" {
     value = aws_instance.private_server.private_ip
 }
 
+ */

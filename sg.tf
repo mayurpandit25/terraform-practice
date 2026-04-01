@@ -1,4 +1,4 @@
-resource "aws_security_group" "sg" {
+/* resource "aws_security_group" "sg" {
     name = "my-security-group"
     description = "my-security-group"
     vpc_id  = aws_vpc.my_vpc.id 
@@ -27,4 +27,4 @@ resource "aws_security_group" "sg" {
     tags = {
         Name = "my-security-group"
     }
-}
+} */

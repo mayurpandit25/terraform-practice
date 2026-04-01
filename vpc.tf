@@ -1,4 +1,4 @@
-resource "aws_vpc" "my_vpc" {
+/* resource "aws_vpc" "my_vpc" {
     cidr_block = var.vpc_cidr
     tags = {
         Name = "my_vpc"
@@ -108,3 +108,4 @@ resource "aws_instance" "private_server" {
         Name = "private_server"
     }
 }
+ */
