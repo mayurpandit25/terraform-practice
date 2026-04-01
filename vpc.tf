@@ -90,7 +90,7 @@ resource "aws_instance" "bastion_host_server" {
     subnet_id = aws_subnet.public_subnet.id
     vpc_security_group_ids = [ aws_security_group.sg.id ]
     depends_on = [ aws_security_group.sg ]
-    user_data = file("./user_data.sh")
+    user_data = file("/root/terraform-practice/user_data.sh")
     tags = {
         Name = "bastion_host_server"
     }
@@ -103,7 +103,7 @@ resource "aws_instance" "private_server" {
     subnet_id = aws_subnet.private_subnet.id 
     vpc_security_group_ids = [ aws_security_group.sg.id ]
     depends_on = [ aws_security_group.sg ]
-    user_data = file("./user_data.sh")
+    user_data = file("/root/terraform-practice/user_data.sh")
     tags = {
         Name = "private_server"
     }
