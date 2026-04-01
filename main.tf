@@ -1,26 +1,26 @@
 module "vpc" {
     source = "./module/vpc"
-    vpc_cidr = "10.0.0.0/16"
-    public_subnet_cidr = "10.0.0.0/20"
-    private_subnet_cidr = "10.0.16.0/20"
-    public_az = "ap-south-1a"
-    private_az = "ap-south-1b"
+    vpc_cidr = var.vpc_cidr
+    public_subnet_cidr = var.public_subnet_cidr
+    private_subnet_cidr = var.private_subnet_cidr
+    public_az = var.public_az
+    private_az = var.private_az
   
 }
 
 module "sg" {
     source = "./module/sg"
-    name   = "my-security-group"
+    name   = var.name
     vpc_id = module.vpc.vpc_id
-    ingress_http = 80
-    ingress_ssh = 22  
+    ingress_http = var.ingress_http
+    ingress_ssh = var.ingress_ssh
 }
 
 module "ec2" {
     source = "./module/ec2"
-    ami    = "ami-08251ad549dc5db38"
-    instance_type = "t3.micro"
-    key_name = "ubuntu"
+    ami    = var.ami 
+    instance_type = var.instance_type
+    key_name = var.key_name
     public_subnet_id = module.vpc.public_subnet_id
     private_subnet_id = module.vpc.private_subnet_id
     sg_id = module.sg.sg_id

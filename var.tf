@@ -51,3 +51,17 @@ variable "env" {
 }
 
 */
+
+variable "vpc_cidr" {}
+variable "public_subnet_cidr" {}
+variable "public_az" {}
+variable "private_subnet_cidr" {}
+variable "private_az" {}
+
+variable "name" {}
+variable "ingress_http" {}
+variable "ingress_ssh" {}
+
+variable "ami" {}
+variable "instance_type" {}
+variable "key_name" {}
