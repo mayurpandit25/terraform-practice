@@ -1,10 +1,14 @@
 resource "aws_instance" "ec2" {
+   for_each = tomap({
+    server1 = "t3.micro"
+    server2 = "t3.small"
+   })
     ami = "ami-05d2d839d4f73aafb"
-    instance_type = "t3.micro"
+    instance_type = each.value
     key_name = "ubuntu"
     vpc_security_group_ids = [ aws_security_group.sg.id ]
     user_data = file("./user_data.sh")
-    count = 2
+    #count = 2
 
     root_block_device {
       volume_size = 10
@@ -12,6 +16,6 @@ resource "aws_instance" "ec2" {
     }
 
     tags = {
-        Name = "my-server"
+        Name = each.key
     }
 }
