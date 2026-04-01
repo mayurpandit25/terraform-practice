@@ -7,8 +7,15 @@ resource "aws_s3_bucket" "s3_bucket" {
     }
 
     lifecycle {
-      prevent_destroy = true
+      prevent_destroy = false
     }
+}
+
+resource "aws_s3_object" "file_upload" {
+  bucket = aws_s3_bucket.s3_bucket.bucket
+  source = "./file.txt"
+  key    = "file.txt"
+  acl    = "private"
 }
 
 /* resource "random_id" "rand_id" {
