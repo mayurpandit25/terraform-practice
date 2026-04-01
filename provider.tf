@@ -3,7 +3,7 @@ provider "aws" {
     profile = "config"
 }
 
-terraform {
+/* terraform {
   backend "s3" {
     bucket = "mayur-s3-amazon-bucket75645"
     region = "ap-south-1"
@@ -12,5 +12,5 @@ terraform {
     shared_credentials_files = [ "/root/.aws/credentials" ]
     dynamodb_table = "cbz"
   }
-}
+} */
 

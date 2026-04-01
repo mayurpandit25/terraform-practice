@@ -37,7 +37,6 @@ variable "key_name" {
     type = string 
     default = "ubuntu"
 }
- */
 
 variable "volume_size" {
     default = 20  
@@ -51,3 +50,4 @@ variable "env" {
     default = "dev"
 }
 
+*/
