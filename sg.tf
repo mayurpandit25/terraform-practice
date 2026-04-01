@@ -1,11 +1,7 @@
-data "aws_vpc" "default" {
-    default = true 
-}
-
 resource "aws_security_group" "sg" {
     name = "my-security-group"
     description = "my-security-group"
-    vpc_id  = data.aws_vpc.default.id  
+    vpc_id  = aws_vpc.my_vpc.id 
 
     ingress {
         from_port = 80
@@ -24,7 +20,7 @@ resource "aws_security_group" "sg" {
     egress {
         from_port = 0
         to_port = 0
-        protocol = "tcp"
+        protocol = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
   
