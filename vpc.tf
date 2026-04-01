@@ -87,6 +87,7 @@ resource "aws_instance" "bastion_host_server" {
     ami = "ami-05d2d839d4f73aafb"
     instance_type = "t3.micro"
     key_name = "ubuntu"
+    subnet_id = aws_subnet.public_subnet.id
     vpc_security_group_ids = [ aws_security_group.sg.id ]
     depends_on = [ aws_security_group.sg ]
     user_data = file("./user_data.sh")
@@ -99,6 +100,7 @@ resource "aws_instance" "private_server" {
     ami = "ami-05d2d839d4f73aafb"
     instance_type = "t3.micro"
     key_name = "ubuntu"
+    subnet_id = aws_subnet.private_subnet.id 
     vpc_security_group_ids = [ aws_security_group.sg.id ]
     depends_on = [ aws_security_group.sg ]
     user_data = file("./user_data.sh")
