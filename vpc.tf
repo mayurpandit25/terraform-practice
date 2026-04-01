@@ -1,5 +1,5 @@
 resource "aws_vpc" "my_vpc" {
-    cidr_block = "10.0.0.0/16"
+    cidr_block = var.vpc_cidr
     tags = {
         Name = "my_vpc"
     }  
@@ -7,8 +7,8 @@ resource "aws_vpc" "my_vpc" {
 
 resource "aws_subnet" "public_subnet" {
     vpc_id = aws_vpc.my_vpc.id
-    cidr_block = "10.0.0.0/20"
-    availability_zone = "ap-south-1a"
+    cidr_block = var.public_subnet_cidr
+    availability_zone = var.public_az
     tags = {
         Name = "public_subnet"
     }
@@ -17,8 +17,8 @@ resource "aws_subnet" "public_subnet" {
 
 resource "aws_subnet" "private_subnet" {
     vpc_id = aws_vpc.my_vpc.id 
-    cidr_block = "10.0.16.0/20"
-    availability_zone = "ap-south-1b"
+    cidr_block = var.private_subnet_cidr
+    availability_zone = var.private_az
     tags = {
         Name = "private_subnet"
     }
@@ -84,9 +84,9 @@ resource "aws_route_table_association" "private_rt_assoc" {
 }
 
 resource "aws_instance" "bastion_host_server" {
-    ami = "ami-05d2d839d4f73aafb"
-    instance_type = "t3.micro"
-    key_name = "ubuntu"
+    ami = var.ami
+    instance_type = var.instance_type
+    key_name = var.key_name
     subnet_id = aws_subnet.public_subnet.id
     vpc_security_group_ids = [ aws_security_group.sg.id ]
     depends_on = [ aws_security_group.sg ]
@@ -97,9 +97,9 @@ resource "aws_instance" "bastion_host_server" {
 }
 
 resource "aws_instance" "private_server" {
-    ami = "ami-05d2d839d4f73aafb"
-    instance_type = "t3.micro"
-    key_name = "ubuntu"
+    ami = var.ami
+    instance_type = var.instance_type
+    key_name = var.key_name 
     subnet_id = aws_subnet.private_subnet.id 
     vpc_security_group_ids = [ aws_security_group.sg.id ]
     depends_on = [ aws_security_group.sg ]
